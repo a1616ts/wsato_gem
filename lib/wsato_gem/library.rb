@@ -1,7 +1,7 @@
 require 'open-uri'
 
 def input()
-    input = STDIN.gets() 
+    input = STDIN.gets() #
     if input.include?("exit")
         exit(0)
     end

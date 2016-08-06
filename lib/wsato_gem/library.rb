@@ -7,14 +7,14 @@ class LibrariesInNeihborhood
 end
 
 class Library
-  def self.search(address:, calilapp_key:)
+  def self.search(address:, calilapp_key:, libraries_limit:)
     begin
       results = request_to_geocode_api(address: address)
       content = json.loads(results.content)
       location = content['results'][0]['geometry']['location']
       geocode = location['lng'].to_s << ',' << location['lat'].to_s
 
-      results = request_to_calil_api(calilapp_key: calilapp_key, geocode: geocode)
+      results = request_to_calil_api(calilapp_key: calilapp_key, geocode: geocode, libraries_limit: libraries_limit)
       contents = JSON.parse(results.content)
 
       if contents.legth < 1
@@ -35,25 +35,18 @@ class Library
       address + '&sensor=false')
   end
 
-  def request_to_calil_api(calilapp_key:, geocode:)
+  def request_to_calil_api(calilapp_key:, geocode:, libraries_limit: 10)
     return get_request(
       'http://api.calil.jp/library?appkey=' <<
       calilapp_key << '&geocode=' << geocode <<
-      '&limit=10&format=json&callback=')
+      '&limit=' + libraries_limit.to_s + '&format=json&callback=')
   end
 
   def libraries_in_neihborhood(contents)
-    lin = LibrariesInNeihborhood.new
-    libraries_formalname_map = {}
     libraries = {}
     contents.each do |content|
-      key = content['systemid'] + content['libkey']
-      libraries[key] = content['distance']
-      libraries_formalname_map[key] = content['formal']
+      libraries[content['distance']] = content['formal']
     end
-
-    lin.libraries = libraries
-    lin.libraries_formalname_map = libraries_formalname_map
-    return lin
+    return Hash[libraries.sort]
   end
 end

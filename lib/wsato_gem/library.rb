@@ -1,9 +1,10 @@
 require 'open-uri'
 
 def input()
-	input = raw_input()
+	input = STDIN.gets()
   if input.include?("exit")
   	exit(0)
+	end
   return input
 end
 
@@ -22,4 +23,5 @@ def get_request(url)
 		raise "HTTP error!" # => RuntimeError
 	else:
 		return results
+	end
 end

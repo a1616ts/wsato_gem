@@ -8,11 +8,11 @@ def input()
   return input
 end
 
-def output(message):
+def output(message)
 	printf("library > %s", message)
 end
 
-def output_br():
+def output_br()
 	printf("library >")
 end
 
@@ -21,7 +21,7 @@ def get_request(url)
 	code, message = results.status # res.status => ["200", "OK"]
 	if code != 200
 		raise "HTTP error!" # => RuntimeError
-	else:
+	else
 		return results
 	end
 end

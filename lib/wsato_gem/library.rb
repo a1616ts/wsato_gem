@@ -42,8 +42,13 @@ class Library
         raise
       else
         output('お近くの図書館を検索しました')
+        output_br
+        libraries = libraries_in_neihborhood(contents)
+        libraries.each do | distance, formal_name |
+          output("#{distance} km  #{formal_name}")
+        end
+        return libraries
       end
-      return libraries_in_neihborhood(contents)
     rescue
       raise
     end

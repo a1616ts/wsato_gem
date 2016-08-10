@@ -1,32 +1,6 @@
 require 'json'
 require 'open-uri'
 
-def input()
-    input = STDIN.gets()
-    if input.include?("exit")
-        exit(0)
-    end
-    return input
-end
-
-def output(message)
-    printf("library > %s\n", message)
-end
-
-def output_br()
-    printf("library >\n")
-end
-
-def get_request(url)
-    results = open(url)
-    code, message = results.status # res.status => ["200", "OK"]
-    if code != '200'
-        raise "HTTP error!" # => RuntimeError
-    else
-        return results.read
-    end
-end
-
 class Library
   def search(address:, calilapp_key:, libraries_limit: 30)
     begin
@@ -73,5 +47,31 @@ class Library
       libraries[content['distance']] = content['formal']
     end
     return Hash[libraries.sort]
+  end
+
+  def input()
+    input = STDIN.gets()
+    if input.include?("exit")
+      exit(0)
+    end
+    return input
+  end
+
+  def output(message)
+    printf("library > %s\n", message)
+  end
+
+  def output_br()
+    printf("library >\n")
+  end
+
+  def get_request(url)
+    results = open(url)
+    code, message = results.status # res.status => ["200", "OK"]
+    if code != '200'
+      raise "HTTP error!" # => RuntimeError
+    else
+      return results.read
+    end
   end
 end

@@ -1,10 +1,22 @@
 require './lib/wsato_gem/library.rb'
 describe 'library' do
+  context 'input' do
+    before do
+      $stdin = StringIO.new('Test')
+    end
+    after do
+      $stdin = STDIN
+    end
+    it 'should call and check input' do
+      library = Library.new
+      allow(library).to 
+      expect(     
+  end
   context 'request_to_geocode_api' do
     it 'should call get_request and return result' do
       library = Library.new
       allow(library).to receive(:get_request).and_return('content')
-      expect(library.request_to_geocode_api(address: 'test')).to eq('content')
+      expect(library.input()).to eq('Test')
     end
   end
   context 'request_to_calil_api' do

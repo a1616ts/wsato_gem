@@ -11,7 +11,7 @@ describe 'library' do
     it 'should call get_request and return result' do
       library = Library.new
       allow(library).to receive(:get_request).and_return('content')
-      expect(library.input()).to eq('Test')
+      expect(library.request_to_calil_api(calilapp_key: 'key', geocode: '120,100', libraries_limit: 10)).to eq('content')
     end
   end
   context 'request_to_calil_api' do

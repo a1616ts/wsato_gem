@@ -11,6 +11,8 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{20162Q Framework Class Ex. Group Work}
   spec.description   = %q{neighbor library search gem}
+  spec.homepage      = "https://github.com/a1616ts/wsato_gem/wiki"
+  spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"

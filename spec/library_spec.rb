@@ -1,12 +1,5 @@
 require './lib/wsato_gem/library.rb'
 describe 'library' do
-  context 'input' do
-    it 'should call and check input' do
-      STDIN.stub(noecho: 'Test')
-      res = Library.new.input()
-      expect(res).to eq('Test')
-    end
-  end
   context 'request_to_geocode_api' do
     it 'should call get_request and return result' do
       library = Library.new

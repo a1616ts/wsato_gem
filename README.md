@@ -20,11 +20,10 @@ Or install it yourself as:
 
 ## Usage
 
-This API searches libraries from your address. 
-
-search_library(address:, calilapp_key:)
-  parameter: address, a API key for http://calil.jp
-  return: library lists if found
+This API searches libraries from your address. 　　
+- search_library(address:, calilapp_key:)
+  - parameter: address, a API key for http://calil.jp
+  - return: library lists if found
 
 ## Development
 
